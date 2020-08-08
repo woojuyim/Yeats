@@ -1,16 +1,43 @@
 # Yeats
 
-## Webpage made to search restaurants, add favorites, and make reservations
+## Search for restaurants near you!
 
-1. Run YeatsDatabase.sql to set up the database
-2. Username and password for MYSQL is root and root. The line to change in case of a different username or password is in Database.java line 17. 
-3. Run HomePage.jsp
+- Many different search options like highest rating or lowest distance
+- Inputting locations is made easier with Google Maps
+- Create an account to save all your favorite restaurants
+- Sign in using a Google account to be able to schedule reservations onto Google Calendar
+- Sort through lists in different orders like A to Z or by most recently added
+
+
+## Screenshots
+
+### HomePage
+![Home](screenshots/Home.png)
+
+### Google Maps
+![Maps](screenshots/Maps.png)
+
+### Accounts
+![Accounts](screenshots/Accounts.png)
+
+### Search Screen
+![Search](screenshots/Search.png)
+
+### Restaurant Screen
+![Details](screenshots/Details.png)
+
+### Favorites
+![Favorites](screenshots/Favorites.png)
 
 ## Details
 
 - Uses Yelp API to search for restaurants
 - Add-ons such as Google Sign in, Google Calendar, Google Maps
-- Uses JSP files and Java Servlets
-- Used Apache Tomcat to run website
-- Works best on Chrome with 110% size or 1230 * 825 size
-- Doesn't work with google acount with extra verifications
+- Account management through MySQL Database
+- Used Apache Tomcat, JSP, Java Servlets for the backend
+
+#### Disabled Functionalities
+
+- The database is disabled
+- Current Yelp API Key is outdated and disabled so create your own API Key here
+  - https://www.yelp.com/developers/documentation/v3

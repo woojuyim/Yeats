@@ -256,7 +256,6 @@ a, a:visited, a:hover, a:focus {
 	border: 1px;
 	margin-bottom: 3em;
 	font-size: 14px;
-
 }
 
 #date {
@@ -336,8 +335,8 @@ a, a:visited, a:hover, a:focus {
 				<span id="latError"></span> <br> <span id="lonError"></span>
 			</div>
 			<div class="box2">
-				<input type="radio" name="options" value="best_match" checked> Best
-				Match &emsp; &emsp; &emsp;<input type="radio" name="options"
+				<input type="radio" name="options" value="best_match" checked>
+				Best Match &emsp; &emsp; &emsp;<input type="radio" name="options"
 					value="review_count">Review Count <br> &emsp; <input
 					type="radio" name="options" value="rating"> Rating &emsp;
 				&emsp; &emsp; &emsp;<input type="radio" name="options"
@@ -427,18 +426,17 @@ a, a:visited, a:hover, a:focus {
 				}
 			%>
 		</button>
-		<span id= favoriteError> </span>
-		<button type="submit" id="addRes" 
-		<% 
-		if(user!=null && user.getGoogleUser()){ %>
-			onclick=reveal()>
-		<% } else{ %>
+		<span id=favoriteError> </span>
+		<button type="submit" id="addRes"
+			<% 
+		if(user!=null && user.getGoogleUser()){ %> onclick=reveal()>
+			<% } else{ %>
 			onclick=reservationError()>
-		<%} %>
-		
+			<%} %>
+
 			<i class="fa fa-calendar-plus-o"></i> Add Reservation
 		</button>
-		<span id = "reservationError"> </span>
+		<span id="reservationError"> </span>
 		<div id="hideReservation" style="display: none">
 
 			<form name="reservationform" action="Calendar.jsp" method="GET">
@@ -450,17 +448,18 @@ a, a:visited, a:hover, a:focus {
 				</div>
 				<textarea id="notes" placeholder="Reservation Notes" name="notes"></textarea>
 				<br> <span id="noteError"></span>
-				<button type="submit" id="addRes" onclick="return makeReservation();">
+				<button type="submit" id="addRes"
+					onclick="return makeReservation();">
 					<i class="fa fa-calendar-plus-o"></i> Submit Reservation
-				</button>				
+				</button>
 			</form>
 		</div>
 	</div>
 	<div id="modalbox" class="modal">
 		<div class="boxcontent" id="maps"></div>
 	</div>
-	
-	
+
+
 	<script>
 		var modalbox = document.getElementById("modalbox");
 		var mapbtn = document.getElementById("map");
@@ -478,7 +477,7 @@ a, a:visited, a:hover, a:focus {
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcc-FoGTPO8ZS5lsojNF4NauFW2LuKlgE&callback=initMap"
 		type="text/javascript"></script>
-		<script async defer src="https://apis.google.com/js/api.js"></script>
+	<script async defer src="https://apis.google.com/js/api.js"></script>
 
 </body>
 </html>

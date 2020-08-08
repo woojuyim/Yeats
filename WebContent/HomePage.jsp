@@ -12,7 +12,6 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css"
 	href="//fonts.googleapis.com/css?family=Lobster" />
-
 <script>
 	function isCorrect() {
 		var error = false;
@@ -173,7 +172,7 @@ a, a:visited, a:hover, a:focus {
 <body class="margins">
 	<div>
 		<span class="topheaderleft"><a href="HomePage.jsp"
-			style="color: #990000">Yeats! </a></span>			
+			style="color: #990000">Yeats! </a></span>
 		<%
 			User user = (User) request.getSession().getAttribute("logged");
 		if (user == null) {
@@ -198,7 +197,8 @@ a, a:visited, a:hover, a:focus {
 		<img src="food.jpg" />
 	</p>
 	<div id="body">
-		<form name="rest" action="SearchServlet" method="GET" onsubmit = "return isCorrect();">
+		<form name="rest" action="SearchServlet" method="GET"
+			onsubmit="return isCorrect();">
 			<div class="box">
 				<input type="text" placeholder="Restaurant Name" id="restaurant"
 					name="restaurant"> &emsp;
@@ -213,8 +213,8 @@ a, a:visited, a:hover, a:focus {
 				<span id="latError"></span> <br> <span id="lonError"></span>
 			</div>
 			<div class="box2">
-				<input type="radio" name="options" value="best_match" checked> Best
-				Match &emsp; &emsp; &emsp;<input type="radio" name="options"
+				<input type="radio" name="options" value="best_match" checked>
+				Best Match &emsp; &emsp; &emsp;<input type="radio" name="options"
 					value="review_count">Review Count <br> &emsp; <input
 					type="radio" name="options" value="rating"> Rating &emsp;
 				&emsp; &emsp; &emsp;<input type="radio" name="options"
@@ -246,6 +246,7 @@ a, a:visited, a:hover, a:focus {
 			}
 		</script>
 	</div>
+	<script src='./config.js'></script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcc-FoGTPO8ZS5lsojNF4NauFW2LuKlgE&callback=initMap"
 		type="text/javascript"></script>

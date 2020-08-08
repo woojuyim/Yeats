@@ -37,6 +37,7 @@ public class Database {
 			System.out.println("Error in closing: " + sqle.getMessage());
 		}
 	}
+
 	// Create account
 	public static boolean createAccount(String username, String password, String email) {
 		try {
@@ -45,8 +46,7 @@ public class Database {
 			st = conn.createStatement();
 
 			// Check if username or email exists
-			pr = conn.prepareStatement("SELECT COUNT(1) FROM ACCOUNTS "
-					+ "WHERE username = ? OR email = ?");
+			pr = conn.prepareStatement("SELECT COUNT(1) FROM ACCOUNTS " + "WHERE username = ? OR email = ?");
 			pr.setString(1, username);
 			pr.setString(2, email);
 			rs = pr.executeQuery();
@@ -71,7 +71,7 @@ public class Database {
 			System.out.println("SQLException in Create: " + sqle.getMessage());
 		} catch (ClassNotFoundException e) {
 			System.out.println("ClassNotFoundException in IsDatabase: " + e.getMessage());
-		} 		
+		}
 		return false;
 	}
 
@@ -80,11 +80,10 @@ public class Database {
 		try {
 			ArrayList<String> favorites = new ArrayList<String>();
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			
+
 			conn = DriverManager.getConnection(connection);
 			st = conn.createStatement();
-			pr = conn.prepareStatement("SELECT COUNT(1) FROM ACCOUNTS \r\n" + 
-							"WHERE username = ? AND PW = ?");
+			pr = conn.prepareStatement("SELECT COUNT(1) FROM ACCOUNTS \r\n" + "WHERE username = ? AND PW = ?");
 			pr.setString(1, username);
 			pr.setString(2, password);
 			rs = pr.executeQuery();
@@ -97,8 +96,8 @@ public class Database {
 			if (val.contentEquals("0")) {
 				closeStatements();
 				return null;
-			} 
-			//Login
+			}
+			// Login
 			else {
 				ps = conn.prepareStatement("SELECT f.YELP_ID FROM ACCOUNTS a, FAVORITES f "
 						+ "WHERE a.ID=f.UID AND a.username=? AND a.PW=?");
@@ -117,7 +116,7 @@ public class Database {
 			System.out.println("SQLException in Login: " + sqle.getMessage());
 		} catch (ClassNotFoundException e) {
 			System.out.println("ClassNotFoundException in IsDatabase: " + e.getMessage());
-		} 
+		}
 		return null;
 	}
 
@@ -150,8 +149,8 @@ public class Database {
 			}
 			// Favorites exists so remove from favorites
 			else {
-				ps = conn.prepareStatement("DELETE f FROM Favorites f, Accounts a\r\n" + 
-						"WHERE (a.username = ? AND a.ID = f.UID AND f.YELP_ID = ? AND a.ID <> 0)");
+				ps = conn.prepareStatement("DELETE f FROM Favorites f, Accounts a\r\n"
+						+ "WHERE (a.username = ? AND a.ID = f.UID AND f.YELP_ID = ? AND a.ID <> 0)");
 				ps.setString(1, username);
 				ps.setString(2, yelpID);
 				ps.executeUpdate();
@@ -162,11 +161,11 @@ public class Database {
 			System.out.println("SQLException in addFavorite: " + sqle.getMessage());
 		} catch (ClassNotFoundException e) {
 			System.out.println("ClassNotFoundException in IsDatabase: " + e.getMessage());
-		} 
+		}
 		return false;
 	}
 
-	//YelpID is already in the database
+	// YelpID is already in the database
 	public static boolean isInDatabase(String username, String yelpID) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -182,7 +181,7 @@ public class Database {
 			while (rs.next()) {
 				val = rs.getString("COUNT(1)");
 			}
-			
+
 			closeStatements();
 			// Yelp ID exists in username
 			if (!val.contentEquals("0")) {
@@ -197,18 +196,19 @@ public class Database {
 			System.out.println("SQLException in IsDatabase: " + sqle.getMessage());
 		} catch (ClassNotFoundException e) {
 			System.out.println("ClassNotFoundException in IsDatabase: " + e.getMessage());
-		} 
+		}
 		return false;
 	}
-	//Get Favorites for username 
-	//May be needed
+
+	// Get Favorites for username
+	// May be needed
 	public static ArrayList<String> getFavorites(String username) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(connection);
 			// Check if id exists in username
-			pr = conn.prepareStatement("SELECT f.YELP_ID FROM ACCOUNTS a, Favorites f WHERE"
-					+ " a.username=? AND a.ID=f.UID");
+			pr = conn.prepareStatement(
+					"SELECT f.YELP_ID FROM ACCOUNTS a, Favorites f WHERE" + " a.username=? AND a.ID=f.UID");
 			pr.setString(1, username);
 			rs = pr.executeQuery();
 			ArrayList<String> val = new ArrayList<String>();
@@ -222,7 +222,7 @@ public class Database {
 			System.out.println("SQLException in getFavorites: " + sqle.getMessage());
 		} catch (ClassNotFoundException e) {
 			System.out.println("ClassNotFoundException in IsDatabase: " + e.getMessage());
-		} 
+		}
 		return null;
 	}
 }

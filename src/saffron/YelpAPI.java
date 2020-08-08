@@ -5,13 +5,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
 import com.google.gson.Gson;
 
 public class YelpAPI {
-	private static String APIKey = "9_h6PjXs8sWY3JO7Jo2BF3wo_x127oWB698h_iffkMIoIRCutVmk-"
-			+ "PFYPEz24dpjaunbJBHwb1HHst0F4t-dMKEuFPgiu0faz_2QvYRxAVL77OMfwv148POEmkB1XnYx";
-	
+
+	private static String APIKey = System.getenv("YELP_APIKEY");
+	// private static String APIKey =
+	// "9_h6PjXs8sWY3JO7Jo2BF3wo_x127oWB698h_iffkMIoIRCutVmk-PFYPEz24dpjaunbJBHwb1HHst0F4t-dMKEuFPgiu0faz_2QvYRxAVL77OMfwv148POEmkB1XnYx";
+
+	public static String getAPIKEY() {
+		return APIKey;
+	}
+
 	public static Restaurant toAPI(String r) {
 		Gson gson = new Gson();
 		BufferedReader br = null;

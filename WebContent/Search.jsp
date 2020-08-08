@@ -14,7 +14,6 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css"
 	href="//fonts.googleapis.com/css?family=Lobster" />
-
 <script>
 	function isCorrect() {
 		var error = false;
@@ -67,12 +66,12 @@
 			infoWindow.open(map);
 		});
 	}
-	 function signOut() {
-		    var auth2 = gapi.auth2.getAuthInstance();
-		    auth2.signOut().then(function () {
-		      console.log('User signed out.');
-		    });
-		  }
+	function signOut() {
+		var auth2 = gapi.auth2.getAuthInstance();
+		auth2.signOut().then(function() {
+			console.log('User signed out.');
+		});
+	}
 </script>
 <style>
 img {
@@ -181,6 +180,7 @@ a, a:visited, a:hover, a:focus {
 	height: 20em;
 	word-break: break-all;
 }
+
 .modal {
 	display: none;
 	position: fixed;
@@ -244,8 +244,8 @@ a, a:visited, a:hover, a:focus {
 
 			</div>
 			<div class="box2">
-				<input type="radio" name="options" value="best_match" checked> Best
-				Match &emsp; &emsp; &emsp;<input type="radio" name="options"
+				<input type="radio" name="options" value="best_match" checked>
+				Best Match &emsp; &emsp; &emsp;<input type="radio" name="options"
 					value="review_count">Review Count <br> &emsp; <input
 					type="radio" name="options" value="rating"> Rating &emsp;
 				&emsp; &emsp; &emsp;<input type="radio" name="options"
@@ -311,6 +311,7 @@ a, a:visited, a:hover, a:focus {
 			}
 		}
 	</script>
+	<script src='./config.js'></script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcc-FoGTPO8ZS5lsojNF4NauFW2LuKlgE&callback=initMap"
 		type="text/javascript"></script>

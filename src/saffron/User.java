@@ -12,8 +12,6 @@ import java.util.Comparator;
 import com.google.gson.Gson;
 
 public class User {
-	private String APIKey = "9_h6PjXs8sWY3JO7Jo2BF3wo_x127oWB698h_iffkMIoIRCutVmk-"
-			+ "PFYPEz24dpjaunbJBHwb1HHst0F4t-dMKEuFPgiu0faz_2QvYRxAVL77OMfwv148POEmkB1XnYx";
 	private String username;
 	private String password;
 	private String email;
@@ -27,12 +25,13 @@ public class User {
 		this.favorites = favorites;
 		restaurants = new ArrayList<Restaurant>();
 	}
+
 	public User(String username, String email) {
 		this.username = username;
 		this.email = email;
 		restaurants = new ArrayList<Restaurant>();
 	}
-	
+
 	Comparator<Restaurant> comparebyAZ = (Restaurant r1, Restaurant r2) -> r1.getName().compareTo(r2.getName());
 	Comparator<Restaurant> comparebylowestRating = (Restaurant r1, Restaurant r2) -> Double.compare(r1.getRating(),
 			r2.getRating());
@@ -52,21 +51,16 @@ public class User {
 	public void sort(String val) {
 		if (val.contentEquals("AZ")) {
 			Collections.sort(restaurants, comparebyAZ);
-		}
-		else if (val.contentEquals("ZA")) {
+		} else if (val.contentEquals("ZA")) {
 			Collections.sort(restaurants, comparebyAZ.reversed());
-		}
-		else if (val.contentEquals("lowest")) {
-			Collections.sort(restaurants,comparebylowestRating);
-		}
-		else if (val.contentEquals("highest")) {
-			Collections.sort(restaurants,comparebylowestRating.reversed());
-		}
-		else if (val.contentEquals("leastrecent")) {
-			Collections.sort(restaurants,comparebyleastrecent);
-		}
-		else if (val.contentEquals("mostrecent")) {
-			Collections.sort(restaurants,comparebyleastrecent.reversed());
+		} else if (val.contentEquals("lowest")) {
+			Collections.sort(restaurants, comparebylowestRating);
+		} else if (val.contentEquals("highest")) {
+			Collections.sort(restaurants, comparebylowestRating.reversed());
+		} else if (val.contentEquals("leastrecent")) {
+			Collections.sort(restaurants, comparebyleastrecent);
+		} else if (val.contentEquals("mostrecent")) {
+			Collections.sort(restaurants, comparebyleastrecent.reversed());
 		}
 	}
 
@@ -82,7 +76,7 @@ public class User {
 				URL url = new URL("https://api.yelp.com/v3/businesses/" + fav);
 				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 				connection.setRequestMethod("GET");
-				connection.setRequestProperty("Authorization", "Bearer " + APIKey);
+				connection.setRequestProperty("Authorization", "Bearer " + YelpAPI.getAPIKEY());
 				if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
 					br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 					Restaurant r = gson.fromJson(br, Restaurant.class);
@@ -127,18 +121,20 @@ public class User {
 	public void removefromFavorites(String fav) {
 		favorites.remove(fav);
 	}
+
 	public void addRestaurants(Restaurant fav) {
 		restaurants.add(fav);
 	}
 
 	public void removeRestaurants(Restaurant fav) {
-		for(int i =0; i < restaurants.size(); ++i) {
-			if(restaurants.get(i).getName().equalsIgnoreCase(fav.getName())){
+		for (int i = 0; i < restaurants.size(); ++i) {
+			if (restaurants.get(i).getName().equalsIgnoreCase(fav.getName())) {
 				restaurants.remove(i);
 				break;
 			}
 		}
 	}
+
 	public ArrayList<String> getFavorites() {
 		return favorites;
 	}
@@ -158,9 +154,11 @@ public class User {
 	public void setFavorites(ArrayList<String> favorites) {
 		this.favorites = favorites;
 	}
+
 	public boolean getGoogleUser() {
 		return isGoogleUser;
 	}
+
 	public void setGoogleUser(boolean isGoogleUser) {
 		this.isGoogleUser = isGoogleUser;
 	}

@@ -8,12 +8,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Login/SignUp Page</title>
+<script src='./config.js'></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css"
 	href="//fonts.googleapis.com/css?family=Lobster" />
-<meta name="google-signin-client_id"
-	content="650442592939-0hn6o4vfbkv7att0c9afsfo4dlp0tk98.apps.googleusercontent.com">
+<meta name="google-signin-client_id" content="650442592939-0hn6o4vfbkv7att0c9afsfo4dlp0tk98.apps.googleusercontent.com">
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 <script>
@@ -243,7 +243,7 @@ a, a:visited, a:hover, a:focus {
 			</p>
 			<p>
 				<input type="checkbox" id="checkbox" name="checkbox"> I have
-				read and agree to all terms and conditions of SalEats <span
+				read and agree to all terms and conditions of Yeats <span
 					id="checkError"></span>
 			</p>
 			<%

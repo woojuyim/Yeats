@@ -51,44 +51,30 @@
 		} else if (document.getElementById("leastrecent").selected) {
 			xhttp.open("GET", "SortServlet?sort=leastrecent", true);
 		}
-		
+
 		//Output
 		xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-		    var text= this.responseText;
-		    var lines = text.split("\n");
-			var index = 0;
-		    document.getElementById("done").innerHTML = 			
-				<%
-				User user = (User) request.getSession().getAttribute("logged");
-				ArrayList<Restaurant> rest = user.getRestaurants();
-				if (rest != null) {
-					for (int i = 0; i < rest.size(); ++i) {
-				%>
-				'<div class="each">' +
-					'<div>' + 
-						'<a id="pic" href="Details.jsp?id=' + lines[index++] + '">' +
-						'<img src='+lines[index++] + 'height=90% width=90% /></a>' +
-					'</div>' + 
-					'<div id="text">'  +
-						'<h1>' + 
-							lines[index++] +
-						'</h1>' +
-						'<p>' + 
-							lines[index++] + 
-						'</p>' + 
-						'<p> '+
-							lines[index++] +
-						'</p>' +
-					'</div>' +
-					'<div id="clear"></div>' +
-			'	</div>' +
-				<%
-					}
-				}
-				%>
-				'';
-		   }
+			if (this.readyState == 4 && this.status == 200) {
+				var text = this.responseText;
+				var lines = text.split("\n");
+				var index = 0;
+				document.getElementById("done").innerHTML =
+<%User user = (User) request.getSession().getAttribute("logged");
+ArrayList<Restaurant> rest = user.getRestaurants();
+if (rest != null) {
+	for (int i = 0; i < rest.size(); ++i) {%>
+	'<div class="each">' + '<div>'
+						+ '<a id="pic" href="Details.jsp?id=' + lines[index++]
+						+ '">' + '<img src=' + lines[index++]
+						+ 'height=90% width=90% /></a>' + '</div>'
+						+ '<div id="text">' + '<h1>' + lines[index++] + '</h1>'
+						+ '<p>' + lines[index++] + '</p>' + '<p> '
+						+ lines[index++] + '</p>' + '</div>'
+						+ '<div id="clear"></div>' + '	</div>' +
+<%}
+				}%>
+	'';
+			}
 		};
 		xhttp.send();
 	}
@@ -123,12 +109,12 @@
 			infoWindow.open(map);
 		});
 	}
-	 function signOut() {
-		    var auth2 = gapi.auth2.getAuthInstance();
-		    auth2.signOut().then(function () {
-		      console.log('User signed out.');
-		    });
-		  }
+	function signOut() {
+		var auth2 = gapi.auth2.getAuthInstance();
+		auth2.signOut().then(function() {
+			console.log('User signed out.');
+		});
+	}
 </script>
 <style>
 img {
@@ -248,6 +234,7 @@ a, a:visited, a:hover, a:focus {
 	font-size: 1em;
 	cursor: pointer;
 }
+
 .modal {
 	display: none;
 	position: fixed;
@@ -266,9 +253,10 @@ a, a:visited, a:hover, a:focus {
 	width: 50em;
 	height: 25em;
 }
-#icon{
-	font-size:1.3em;
-	padding-top:10px;
+
+#icon {
+	font-size: 1.3em;
+	padding-top: 10px;
 }
 </style>
 </head>
@@ -278,7 +266,7 @@ a, a:visited, a:hover, a:focus {
 			style="color: #990000">Yeats! </a></span>
 		<%
 			user = (User) request.getSession().getAttribute("logged");
-			if (user == null) {
+		if (user == null) {
 		%>
 		<span class="topheaderright"> <a href="HomePage.jsp">Home</a>
 			&emsp; <a href="Account.jsp">Login/Sign Up</a></span>
@@ -307,21 +295,23 @@ a, a:visited, a:hover, a:focus {
 					<i class="fa fa-search"></i>
 				</button>
 				<br> <span id="restError"></span> <br> <input
-					type="number" placeholder="Latitude" step="0.00001" class="location"
-					name="latitude" id="latitude"> &emsp; <input type="number"
-					placeholder="Longitude" step="0.00001" class="location" name="longitude" id="longitude">
-				<br> <span id="latError"></span> <br> <span id="lonError"></span>
+					type="number" placeholder="Latitude" step="0.00001"
+					class="location" name="latitude" id="latitude"> &emsp; <input
+					type="number" placeholder="Longitude" step="0.00001"
+					class="location" name="longitude" id="longitude"> <br>
+				<span id="latError"></span> <br> <span id="lonError"></span>
 
 			</div>
 			<div class="box2">
-				<input type="radio" name="options" value="best_match" checked> Best
-				Match &emsp; &emsp; &emsp;<input type="radio" name="options"
+				<input type="radio" name="options" value="best_match" checked>
+				Best Match &emsp; &emsp; &emsp;<input type="radio" name="options"
 					value="review_count">Review Count <br> &emsp; <input
 					type="radio" name="options" value="rating"> Rating &emsp;
 				&emsp; &emsp; &emsp;<input type="radio" name="options"
 					value="distance">Distance <br> <span id="opError"></span>
 				<br>
-				<button type="button" id="map" onclick="window.open('Maps.jsp', 'name', 'width:100,height=50');">
+				<button type="button" id="map"
+					onclick="window.open('Maps.jsp', 'name', 'width:100,height=50');">
 					<i class="fa fa-map-marker"></i> Google Maps (Drop a pin!)
 				</button>
 			</div>
@@ -340,21 +330,21 @@ a, a:visited, a:hover, a:focus {
 				<option id="lowest" value="lowest">Lowest Rating</option>
 				<option id="mostrecent" value="mostrecent">Most Recent</option>
 				<option id="leastrecent" value="leastrecent">Least Recent</option>
-			</select> <i class="fa fa-sort-amount-desc" id = "icon" aria-hidden="true"></i>
+			</select> <i class="fa fa-sort-amount-desc" id="icon" aria-hidden="true"></i>
 		</div>
 		<br>
 		<hr>
 		<br>
 		<div id="done">
 			<%
-			rest = user.getRestaurants();
+				rest = user.getRestaurants();
 			if (rest != null) {
 				for (Restaurant r : rest) {
 			%>
 			<div class="each">
 				<div>
-					<a id = "pic" href="Details.jsp?id=<%=r.getId()%>" >
-					<img src=<%=r.getImage_url()%> height = 90% width=90% /></a>
+					<a id="pic" href="Details.jsp?id=<%=r.getId()%>"> <img
+						src=<%=r.getImage_url()%> height=90% width=90% /></a>
 				</div>
 				<div id="text">
 					<h1>
@@ -362,8 +352,17 @@ a, a:visited, a:hover, a:focus {
 					</h1>
 					<p>
 						<%=r.getLocation()%>
-					</p> 
+					</p>
 					<p>
+						<%
+							String url = r.getUrl();
+						int index = url.indexOf("?");
+						//Has ?
+						if (index != -1) {
+							String substring = url.substring(0, index);
+							r.setUrl(substring);
+						}
+						%>
 						<%=r.getUrl()%>
 					</p>
 				</div>
@@ -391,7 +390,8 @@ a, a:visited, a:hover, a:focus {
 			if (event.target == modalbox) {
 				modalbox.style.display = "none";
 			}
-		} </script>
+		}
+	</script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcc-FoGTPO8ZS5lsojNF4NauFW2LuKlgE&callback=initMap"
 		type="text/javascript"></script>
